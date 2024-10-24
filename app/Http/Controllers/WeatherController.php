@@ -121,7 +121,7 @@ class WeatherController extends Controller
             return response()->json($weatherDto, options: JSON_UNESCAPED_UNICODE);
         } catch (\Throwable $exception) {
             return response()->json([
-                'message' => 'Something went wrong',
+                'error' => 'Something went wrong',
             ], 500);
         }
     }
