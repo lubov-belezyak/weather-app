@@ -3,16 +3,17 @@
 namespace App\Services;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 
 abstract class ApiClient
 {
-
     abstract protected function getClient(): Client;
 
-
     /**
-     * @throws \Throwable
+     * @param string $endpoint
+     * @param array $params
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonException
      */
     protected function requestGet(string $endpoint, array $params = []): array
     {
@@ -21,5 +22,20 @@ abstract class ApiClient
         ]);
 
         return json_decode($response->getBody()->getContents(), true, flags: JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
+    }
+
+    /**
+     * to be continued
+     */
+    protected function requestPost(string $endpoint, array $params = []): array {
+        return [];
+    }
+
+    protected function requestPut(string $endpoint, array $params = []): array {
+        return [];
+    }
+
+    protected function requestDelete(string $endpoint, array $params = []): array {
+        return [];
     }
 }

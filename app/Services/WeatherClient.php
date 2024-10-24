@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Query;
@@ -11,6 +10,9 @@ use Psr\Http\Message\RequestInterface;
 
 class WeatherClient extends ApiClient
 {
+    /**
+     * @return Client
+     */
     protected function getClient(): Client
     {
         return new Client([
@@ -23,6 +25,9 @@ class WeatherClient extends ApiClient
         ]);
     }
 
+    /**
+     * @return string
+     */
     protected function getCurrentWeatherUrl(): string
     {
         return 'data/' .
@@ -30,6 +35,9 @@ class WeatherClient extends ApiClient
             config('openweathermap.api.current_weather.endpoint');
     }
 
+    /**
+     * @return HandlerStack
+     */
     private function addDefaultQueryParameters(): HandlerStack
     {
         $defaultQueryParameters = [
@@ -47,7 +55,10 @@ class WeatherClient extends ApiClient
     }
 
     /**
-     * @throws \Throwable
+     * @param WeatherRequestParams $params
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonException
      */
     public function getCurrentWeatherByCity(WeatherRequestParams $params): array
     {
