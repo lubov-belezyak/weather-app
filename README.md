@@ -10,6 +10,17 @@
 - Влажность
 - Вероятность осадков
 
+## Запуск
+```bash
+docker compose up
+```
+```bash
+docker compose exec app php artisan key:generate
+```
+```bash
+docker compose exec app php artisan migrate
+```
+
 ## Компоненты
 `Services/ApiClient` — общий родительский класс для всех внешних интеграций  
 `Services/WeatherClient` — клиент для отправки запросов к [OpenWeather](https://openweathermap.org/current)  
