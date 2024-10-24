@@ -122,6 +122,17 @@
                                 }
                             }
                         }
+                    },
+                    "500": {
+                        "description": "Ошибка сервера",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "error": "Something went wrong"
+                                }
+                            }
+                        }
                     }
                 }
             }

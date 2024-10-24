@@ -100,7 +100,16 @@ class WeatherController extends Controller
      *                  }
      *              }
      *         )
-     *     )
+     *     ),
+     *     @OA\Response(
+     *          response=500,
+     *          description="Ошибка сервера",
+     *          @OA\JsonContent(
+     *              example={
+     *                  "error": "Something went wrong"
+     *              }
+     *          )
+     *      )
      * )
      */
     public function getCurrentWeatherByCity(WeatherByCityRequest $request): JsonResponse
