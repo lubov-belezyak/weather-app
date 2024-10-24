@@ -23,3 +23,7 @@
 `Enums/WeatherUnits` — доступные единицы измерения
 
 `config/openweathermap` — основная конфигурация для клиента
+
+## Маршруты
+`/api/weather` — получение данных о погоде по указанному городу
+`/api/documentation` — Swagger

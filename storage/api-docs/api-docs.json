@@ -1,0 +1,136 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Weather API",
+        "description": "API для получения информации о погоде с OpenWeather.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api",
+            "description": "Local development server"
+        }
+    ],
+    "paths": {
+        "/api/weather": {
+            "get": {
+                "tags": [
+                    "Weather"
+                ],
+                "summary": "Получить текущую погоду по названию города",
+                "operationId": "550c5ef894e3ebc974201950a826e5db",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "query",
+                        "description": "Название города",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "state_code",
+                        "in": "query",
+                        "description": "Код штата (если применимо). Максимум 2 символа.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 2
+                        }
+                    },
+                    {
+                        "name": "country_code",
+                        "in": "query",
+                        "description": "Код страны (если применимо). Максимум 2 символа.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 2
+                        }
+                    },
+                    {
+                        "name": "mode",
+                        "in": "query",
+                        "description": "Режим ответа (json, xml, html).",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml",
+                                "html"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "units",
+                        "in": "query",
+                        "description": "Единицы измерения (standard, metric, imperial).",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "standard",
+                                "metric",
+                                "imperial"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "lang",
+                        "in": "query",
+                        "description": "Язык ответа. Максимум 5 символов.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 5
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ с погодными данными",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "city": "Екатеринбург",
+                                    "temperature": 6.77,
+                                    "weatherDescription": "небольшой проливной дождь",
+                                    "windSpeed": 0,
+                                    "pressure": 998,
+                                    "humidity": 100,
+                                    "iconUrl": "https://openweathermap.org/img/wn/09n@2x.png",
+                                    "rainProbability": null
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибка валидации",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "The given data was invalid.",
+                                    "errors": {
+                                        "city": [
+                                            "Поле city обязательно для заполнения."
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Weather",
+            "description": "Weather"
+        }
+    ]
+}
